@@ -13,6 +13,20 @@ class Counter extends Component {
         setTimeout(this.increment,1000)
     };
 
+    incrementIfDivisibleBySeventyThree = (e) => {
+        if (this.props.count%73 === 0) {
+            this.increment()
+        }
+    }
+
+    incrementByFive = (e) => {
+        this.increment()
+        this.increment()
+        this.increment()
+        this.increment()
+        this.increment()
+    }
+
     increment = e => {
         this.props.increment();
       };
@@ -41,6 +55,12 @@ class Counter extends Component {
                 </button>
                 <button onClick={() => this.incrementAsync()}>
                     Increment async
+                </button> 
+                <button onClick={() => this.incrementByFive()}>
+                    Increment By Five
+                </button> 
+                <button onClick={() => this.incrementIfDivisibleBySeventyThree()}>
+                    Increment if divisible by 73
                 </button> 
             </p>
         );
