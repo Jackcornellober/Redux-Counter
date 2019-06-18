@@ -3,14 +3,36 @@ import { connect } from 'react-redux';
 import { increment, decrement } from '../actions';
 
 class Counter extends Component {
-    incrementIfOdd = () => {
-        // Stretch Problem: Implement an increment function that
-        // only increments if the counter value is odd
+    incrementIfOdd = (e) => {
+        if (this.props.count%2 === 1){
+            this.increment()
+        }
     };
 
-    incrementAsync = () => {
-        // Stretch Problem: Implement an increment function that
-        // increments after waiting for one second
+    incrementAsync = (e) => {
+        setTimeout(this.increment,1000)
+    };
+
+    incrementIfDivisibleBySeventyThree = (e) => {
+        if (this.props.count%73 === 0) {
+            this.increment()
+        }
+    }
+
+    incrementByFive = (e) => {
+        this.increment()
+        this.increment()
+        this.increment()
+        this.increment()
+        this.increment()
+    }
+
+    increment = e => {
+        this.props.increment();
+      };
+
+    decrement = e => {
+      this.props.decrement();
     };
 
     render() {
@@ -20,20 +42,26 @@ class Counter extends Component {
         return (
             <p>
                 Clicked: {this.props.count} times
-                <button onClick={() => {/* Fill me in */ }}>
+                <button onClick={() => {this.increment()}}>
                     +
                 </button>
-                <button onClick={() => {/* Fill me in */ }}>
+                <button onClick={() => {this.decrement()}}>
                     -
                 </button>
                  {/* Uncomment these button tags if you got
                 around to implementing the extra credit functions */}
-                {/* <button onClick={this.incrementIfOdd}>
+                <button onClick={() => this.incrementIfOdd()}>
                     Increment if odd
                 </button>
-                <button onClick={this.incrementAsync}>
+                <button onClick={() => this.incrementAsync()}>
                     Increment async
-                </button>  */}
+                </button> 
+                <button onClick={() => this.incrementByFive()}>
+                    Increment By Five
+                </button> 
+                <button onClick={() => this.incrementIfDivisibleBySeventyThree()}>
+                    Increment if divisible by 73
+                </button> 
             </p>
         );
     }
